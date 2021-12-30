@@ -270,7 +270,19 @@ c.forrav <- subset(cur, cur$Current.Species=="Formica ravida")
 # number of individual observations
 length(h.forrav$Elevation..m.)
 length(c.forrav$Elevation..m.)
+# not enough observations to make an accurate determination
 
+# --------------------------------------------------------------------------- # FORMICA OBSCURIVENTRIS
+# HAS THE ELEVATIONAL RANGE OF FORMICA obscuriventris CHANGED?
+
+# subsets with Formica obscuriventris
+h.forobs <- subset(hist, hist$Current.Species=="Formica obscuriventris")
+c.forobs <- subset(cur, cur$Current.Species=="Formica obscuriventris")
+
+# number of individual observations
+length(h.forobs$Elevation..m.)
+length(c.forobs$Elevation..m.)
+# not enough observations to make an accurate determination
 
 # --------------------------------------------------------------------------- # LASIUS AMERICANUS
 # HAS THE ELEVATIONAL RANGE OF LASIUS AMERICANUS CHANGED?
@@ -282,40 +294,45 @@ c.lasame <- subset(cur, cur$Current.Species=="Lasius americanus")
 # number of individual observations
 length(h.lasame$Elevation..m.)
 length(c.lasame$Elevation..m.)
-# boxplot visualization
-boxplot(h.lasame$Elevation..m., c.lasame$Elevation..m., 
-        names=c("Browne","Current"), main="Lasius americanus")
-# Welch's t-test to see if elevation has changed from 1950's
-ele.lasame <- t.test(h.lasame$Elevation..m., c.lasame$Elevation..m.)
-# ridgeline visualization
-lasame <- subset(ant, ant$Current.Species=="Lasius americanus")
-ggplot(lasame, aes(x = Elevation..m., y = Current.or.Historical, 
-                   fill = Current.or.Historical)) + 
-  geom_density_ridges(scale = 4, alpha = 0.6)+theme_ridges()+
-  theme(axis.title.y = element_blank())+
-  xlab("Elevation (m)")+ylab("")
+# not enough observations to make an accurate determination
+
+# --------------------------------------------------------------------------- # LASIUS NEONIGER
+# HAS THE ELEVATIONAL RANGE OF LASIUS NEONIGER CHANGED?
+
+# subsets with Lasius neoniger
+h.lasneo <- subset(hist, hist$Current.Species=="Lasius neoniger")
+c.lasneo <- subset(cur, cur$Current.Species=="Lasius neoniger")
+
+# number of individual observations
+length(h.lasneo$Elevation..m.)
+length(c.lasneo$Elevation..m.)
+# not enough observations to make an accurate determination
+
 # --------------------------------------------------------------------------- # LASIUS PALLITARSIS
 #  HAS THE ELEVATIONAL RANGE OF LASIUS PALLITARSIS CHANGED?
 
 # subsets of Lasius pallitarsis
 h.laspal <- subset(hist, hist$Current.Species=="Lasius pallitarsis")
 c.laspal <- subset(cur, cur$Current.Species=="Lasius pallitarsis")
+
+# number of individual observations
 length(h.laspal$Elevation..m.)
 length(c.laspal$Elevation..m.)
+
 # boxplot visualization
 boxplot(h.laspal$Elevation..m., c.laspal$Elevation..m., 
         names=c("Browne","Current"),main="Lasius pallitarsis")
 
 # Welch's t-test to see if elevation has changed from 1950's
-# use a Welch's t-test because of the varying sample sizes
 ele.laspal <- t.test(h.laspal$Elevation..m., c.laspal$Elevation..m.)
 ele.laspal
 
 # ridgeline visualization
 laspal <- subset(ant, ant$Current.Species=="Lasius pallitarsis")
-ggplot(laspal, aes(x = Elevation..m., y = Current.or.Historical, 
-                   fill = Current.or.Historical)) + 
+ggplot(laspal, aes(x = Elevation..m., y = Timeframe, 
+                   fill = Timeframe)) + 
   geom_density_ridges(scale = 4, alpha = 0.6)+theme_ridges()+
+  scale_fill_cyclical(values = c("darkcyan", "goldenrod"), guide = "legend")+
   theme(axis.title.y = element_blank())+
   xlab("Elevation m")+ylab("")
 
@@ -326,6 +343,8 @@ ggplot(laspal, aes(x = Elevation..m., y = Current.or.Historical,
 # subsets with Leptothorax crassipilis
 h.lepcra <- subset(hist, hist$Current.Species=="Leptothorax crassipilis")
 c.lepcra <- subset(cur, cur$Current.Species=="Leptothorax crassipilis")
+
+# number of individual observations
 length(h.lepcra$Elevation..m.)
 length(c.lepcra$Elevation..m.)
 
@@ -334,15 +353,15 @@ boxplot(h.lepcra$Elevation..m., c.lepcra$Elevation..m.,
         names=c("Browne","Current"), main="Leptothorax crassipilis")
 
 # Welch's t-test to see if elevation has changed from 1950's
-# use a Welch's t-test because of the varying sample sizes
 ele.lepcra <- t.test(h.lepcra$Elevation..m., c.lepcra$Elevation..m.)
 ele.lepcra
 
 # ridgeline visualization
 lepcra <- subset(ant, ant$Current.Species=="Leptothorax crassipilis")
-ggplot(lepcra, aes(x = Elevation..m., y = Current.or.Historical, 
-                   fill = Current.or.Historical)) + 
+ggplot(lepcra, aes(x = Elevation..m., y = Timeframe, 
+                   fill = Timeframe)) + 
   geom_density_ridges(scale = 4, alpha = 0.6)+theme_ridges()+
+  scale_fill_cyclical(values = c("darkcyan", "goldenrod"), guide = "legend")+
   theme(axis.title.y = element_blank())+
   xlab("Elevation (m)")+ylab("")
 
@@ -353,6 +372,7 @@ ggplot(lepcra, aes(x = Elevation..m., y = Current.or.Historical,
 h.lioapi <- subset(hist, hist$Current.Species=="Liometopum apiculatum")
 c.lioapi <- subset(cur, cur$Current.Species=="Liometopum apiculatum")
 
+# number of individual observations
 length(h.lioapi$Elevation..m.)
 length(c.lioapi$Elevation..m.)
 
@@ -361,15 +381,15 @@ boxplot(h.lioapi$Elevation..m., c.lioapi$Elevation..m.,
         names=c("Browne","Current"),main="Liometopum apiculatum")
 
 # Welch's t-test to see if elevation has changed from 1950's
-# use a Welch's t-test because of the varying sample sizes
 ele.lioapi <- t.test(h.lioapi$Elevation..m., c.lioapi$Elevation..m.)
 ele.lioapi
 
 # ridgeline visualization
 lioapi <- subset(ant, ant$Current.Species=="Liometopum apiculatum")
-ggplot(lioapi, aes(x = Elevation..m., y = Current.or.Historical, 
-                   fill = Current.or.Historical)) + 
+ggplot(lioapi, aes(x = Elevation..m., y = Timeframe, 
+                   fill = Timeframe)) + 
   geom_density_ridges(scale = 4, alpha = 0.6)+theme_ridges()+
+  scale_fill_cyclical(values = c("darkcyan", "goldenrod"), guide = "legend")+
   theme(axis.title.y = element_blank())+
   xlab("Elevation m")+ylab("")
 
@@ -379,25 +399,11 @@ ggplot(lioapi, aes(x = Elevation..m., y = Current.or.Historical,
 # subsets with Liometopum luctuosum
 h.lioluc <- subset(hist, hist$Current.Species=="Liometopum luctuosum")
 c.lioluc <- subset(cur, cur$Current.Species=="Liometopum luctuosum")
+
+# number of individual observations
 length(h.lioluc$Elevation..m.)
 length(c.lioluc$Elevation..m.)
-
-# boxplot visualization
-boxplot(h.lioluc$Elevation..m., c.lioluc$Elevation..m., 
-        names=c("Browne","Current"), main="Liometopum luctuosum")
-
-# Welch's t-test to see if elevation has changed from 1950's
-# use a Welch's t-test because of the varying sample sizes
-ele.lioluc <- t.test(h.lioluc$Elevation..m., c.lioluc$Elevation..m.)
-ele.lioluc
-
-# ridgeline visualization
-lioluc <- subset(ant, ant$Current.Species=="Liometopum luctuosum")
-ggplot(lioluc, aes(x = Elevation..m., y = Current.or.Historical, 
-                   fill = Current.or.Historical)) + 
-  geom_density_ridges(scale = 4, alpha = 0.6)+theme_ridges()+
-  theme(axis.title.y = element_blank())+
-  xlab("Elevation (m)")+ylab("")
+# not enough observations to make an accurate determination
 
 # --------------------------------------------------------------------------- # MYRMICA FRACTICORNIS
 # HAS THE ELEVATIONAL RANGE OF MYRMICA FRACTICORNIS CHANGED?
@@ -405,25 +411,11 @@ ggplot(lioluc, aes(x = Elevation..m., y = Current.or.Historical,
 # subsets with Myrmica fracticornis
 h.myrfra <- subset(hist, hist$Current.Species=="Myrmica fracticornis")
 c.myrfra <- subset(cur, cur$Current.Species=="Myrmica fracticornis")
+
+# number of individual observations
 length(h.myrfra$Elevation..m.)
 length(c.myrfra$Elevation..m.)
-
-# boxplot visualization
-boxplot(h.myrfra$Elevation..m., c.myrfra$Elevation..m., 
-        names=c("Browne","Current"), main="Myrmica fracticornis")
-
-# Welch's t-test to see if elevation has changed from 1950's
-# use a Welch's t-test because of the varying sample sizes
-ele.myrfra <- t.test(h.myrfra$Elevation..m., c.myrfra$Elevation..m.)
-ele.myrfra
-
-# ridgeline visualization
-myrfra <- subset(ant, ant$Current.Species=="Myrmica fracticornis")
-ggplot(myrfra, aes(x = Elevation..m., y = Current.or.Historical, 
-                   fill = Current.or.Historical)) + 
-  geom_density_ridges(scale = 4, alpha = 0.6)+theme_ridges()+
-  theme(axis.title.y = element_blank())+
-  xlab("Elevation (m)")+ylab("")
+# not enough observations to make an accurate determinations
 
 # --------------------------------------------------------------------------- # MYRMICA MONTICOLA
 # HAS THE ELEVATIONAL RANGE OF MYRMICA MONTICOLA CHANGED?
@@ -431,25 +423,11 @@ ggplot(myrfra, aes(x = Elevation..m., y = Current.or.Historical,
 # subsets with Myrmica monticola
 h.myrmon <- subset(hist, hist$Current.Species=="Myrmica monticola")
 c.myrmon <- subset(cur, cur$Current.Species=="Myrmica monticola")
+
+# number of individual observations
 length(h.myrmon$Elevation..m.)
 length(c.myrmon$Elevation..m.)
-
-# boxplot visualization
-boxplot(h.myrmon$Elevation..m., c.myrmon$Elevation..m., 
-        names=c("Browne","Current"), main="Myrmica monticola")
-
-# Welch's t-test to see if elevation has changed from 1950's
-# use a Welch's t-test because of the varying sample sizes
-ele.myrmon <- t.test(h.myrmon$Elevation..m., c.myrmon$Elevation..m.)
-ele.myrmon
-
-# ridgeline visualization
-myrmon <- subset(ant, ant$Current.Species=="Myrmica monticola")
-ggplot(myrmon, aes(x = Elevation..m., y = Current.or.Historical, 
-                   fill = Current.or.Historical)) + 
-  geom_density_ridges(scale = 4, alpha = 0.6)+theme_ridges()+
-  theme(axis.title.y = element_blank())+
-  xlab("Elevation (m)")+ylab("")
+# not enough observations to make an accurate determination
 
 # --------------------------------------------------------------------------- # PHEIDOLE CERES
 # HAS THE ELEVATIONAL RANGE OF PHEIDOLE CERES CHANGED?
@@ -457,6 +435,8 @@ ggplot(myrmon, aes(x = Elevation..m., y = Current.or.Historical,
 # subsets with Pheidole ceres
 h.phecer <- subset(hist, hist$Current.Species=="Pheidole ceres")
 c.phecer <- subset(cur, cur$Current.Species=="Pheidole ceres")
+
+# number of individual observations
 length(h.phecer$Elevation..m.)
 length(c.phecer$Elevation..m.)
 
@@ -465,17 +445,41 @@ boxplot(h.phecer$Elevation..m., c.phecer$Elevation..m.,
         names=c("Browne","Current"), main="Pheidole ceres")
 
 # Welch's t-test to see if elevation has changed from 1950's
-# use a Welch's t-test because of the varying sample sizes
 ele.phecer <- t.test(h.phecer$Elevation..m., c.phecer$Elevation..m.)
 ele.phecer
 
 # ridgeline visualization
 phecer <- subset(ant, ant$Current.Species=="Pheidole ceres")
-ggplot(phecer, aes(x = Elevation..m., y = Current.or.Historical, 
-                   fill = Current.or.Historical)) + 
+ggplot(phecer, aes(x = Elevation..m., y = Timeframe, 
+                   fill = Timeframe)) + 
   geom_density_ridges(scale = 4, alpha = 0.6)+theme_ridges()+
+  scale_fill_cyclical(values = c("darkcyan", "goldenrod"), guide = "legend")+
   theme(axis.title.y = element_blank())+
   xlab("Elevation (m)")+ylab("")
+
+# --------------------------------------------------------------------------- # PHEIDOLE PILIFERA
+# HAS THE ELEVATIONAL RANGE OF PHEIDOLE PILIFERA CHANGED?
+
+# subsets with Pheidole pilifera
+h.phepil <- subset(hist, hist$Current.Species=="Pheidole pilifera")
+c.phepil <- subset(cur, cur$Current.Species=="Pheidole pilifera")
+
+# number of individual observations
+length(h.phepil$Elevation..m.)
+length(c.phepil$Elevation..m.)
+# not enough observations to make an accurate determination
+
+# --------------------------------------------------------------------------- # SOLENOPSIS MOLESTA
+# HAS THE ELEVATIONAL RANGE OF SOLENOPSIS MOLESTA CHANGED?
+
+# subsets with Solenopsis molesta
+h.solmol <- subset(hist, hist$Current.Species=="Solenopsis molesta")
+c.solmol <- subset(cur, cur$Current.Species=="Solenopsis molesta")
+
+# number of individual observations
+length(h.solmol$Elevation..m.)
+length(c.solmol$Elevation..m.)
+# not enough observations to make an accurate determination
 
 # --------------------------------------------------------------------------- # STENAMMA DIECKI
 # HAS THE ELEVATIONAL RANGE OF STENAMMA DIECKI CHANGED?
@@ -483,6 +487,8 @@ ggplot(phecer, aes(x = Elevation..m., y = Current.or.Historical,
 # subsets with Stenamma diecky
 h.stedie <- subset(hist, hist$Current.Species=="Stenamma diecki")
 c.stedie <- subset(cur, cur$Current.Species=="Stenamma diecki")
+
+# number of individual observations
 length(h.stedie$Elevation..m.)
 length(c.stedie$Elevation..m.)
 
@@ -491,15 +497,15 @@ boxplot(h.stedie$Elevation..m., c.stedie$Elevation..m.,
         names=c("Browne","Current"), main="Stenamma diecki")
 
 # Welch's t-test to see if elevation has changed from 1950's
-# use a Welch's t-test because of the varying sample sizes
 ele.stedie <- t.test(h.stedie$Elevation..m., c.stedie$Elevation..m.)
 ele.stedie
 
 # ridgeline visualization
 stedie <- subset(ant, ant$Current.Species=="Stenamma diecki")
-ggplot(stedie, aes(x = Elevation..m., y = Current.or.Historical, 
-                   fill = Current.or.Historical)) + 
+ggplot(stedie, aes(x = Elevation..m., y = Timeframe, 
+                   fill = Timeframe)) + 
   geom_density_ridges(scale = 4, alpha = 0.6)+theme_ridges()+
+  scale_fill_cyclical(values = c("darkcyan", "goldenrod"), guide = "legend")+
   theme(axis.title.y = element_blank())+
   xlab("Elevation (m)")+ylab("")
 
@@ -511,6 +517,7 @@ ggplot(stedie, aes(x = Elevation..m., y = Current.or.Historical,
 h.tapses <- subset(hist, hist$Current.Species=="Tapinoma sessile")
 c.tapses <- subset(cur, cur$Current.Species=="Tapinoma sessile")
 
+# number of individual observations
 length(h.tapses$Elevation..m.)
 length(c.tapses$Elevation..m.)
 
@@ -519,18 +526,29 @@ boxplot(h.tapses$Elevation..m., c.tapses$Elevation..m.,
         names=c("Browne","Current"),main="Tapinoma sessile")
 
 # Welch's t-test to see if elevation has changed from 1950's
-# use a Welch's t-test because of the varying sample sizes
 ele.tapses <- t.test(h.tapses$Elevation..m., c.tapses$Elevation..m.)
 ele.tapses
 
 # ridgeline visualization
 tapses <- subset(ant, ant$Genus=="Tapinoma")
-ggplot(tapses, aes(x = Elevation..m., y = Current.or.Historical, 
-                   fill = Current.or.Historical)) + 
+ggplot(tapses, aes(x = Elevation..m., y = Timeframe, 
+                   fill = Timeframe)) + 
   geom_density_ridges(scale = 4, alpha = 0.6)+theme_ridges()+
+  scale_fill_cyclical(values = c("darkcyan", "goldenrod"), guide = "legend")+
   theme(axis.title.y = element_blank())+
   xlab("Elevation m")+ylab("")
 
+# --------------------------------------------------------------------------- # TEMNOTHORAX NITENS
+#  HAS THE ELEVATIONAL RANGE OF TEMNOTHORAX NITENS CHANGED?
+
+# subsets of Temnothorax nitens
+h.temnit <- subset(hist, hist$Current.Species=="Temnothorax nitens")
+c.temnit <- subset(cur, cur$Current.Species=="Temnothorax nitens")
+
+# number of individual observations
+length(h.temnit$Elevation..m.)
+length(c.temnit$Elevation..m.)
+# not enough observations to make an accurate determination
 
 # --------------------------------------------------------------------------- # TEMNOTHORAX RUGATULUS
 #  HAS THE ELEVATIONAL RANGE OF TEMNOTHORAX RUGATULUS CHANGED?
@@ -539,6 +557,7 @@ ggplot(tapses, aes(x = Elevation..m., y = Current.or.Historical,
 h.temrug <- subset(hist, hist$Current.Species=="Temnothorax rugatulus")
 c.temrug <- subset(cur, cur$Current.Species=="Temnothorax rugatulus")
 
+# number of individual observations
 length(h.temrug$Elevation..m.)
 length(c.temrug$Elevation..m.)
 
@@ -547,15 +566,15 @@ boxplot(h.temrug$Elevation..m., c.temrug$Elevation..m.,
         names=c("Browne","Current"),main="Temnothorax rugatulus")
 
 # Welch's t-test to see if elevation has changed from 1950's
-# use a Welch's t-test because of the varying sample sizes
 ele.temrug <- t.test(h.temrug$Elevation..m., c.temrug$Elevation..m.)
 ele.temrug
 
 # ridgeline visualization
 temrug <- subset(ant, ant$Current.Species=="Temnothorax rugatulus")
-ggplot(temrug, aes(x = Elevation..m., y = Current.or.Historical, 
-                   fill = Current.or.Historical)) + 
+ggplot(temrug, aes(x = Elevation..m., y = Timeframe, 
+                   fill = Timeframe)) + 
   geom_density_ridges(scale = 4, alpha = 0.6)+theme_ridges()+
+  scale_fill_cyclical(values = c("darkcyan", "goldenrod"), guide = "legend")+
   theme(axis.title.y = element_blank())+
   xlab("Elevation m")+ylab("")
 
@@ -576,11 +595,11 @@ ggplot(chele, aes(x = Elevation..m., y = Current.Species, fill = Timeframe)) +
 
 
 noch <- ant[ant$Current.Species %in% c("Aphaenogaster occidentalis", 
-                                       "Brachymyrmex depilis", 
+                                       "Camponotus modoc", 
                                        "Formica fusca", "Formica neorufibarbis", 
-                                       "Lasius americanus", "Lasius pallitarsis", 
+                                       "Lasius pallitarsis", 
                                        "Liometopum apiculatum", 
-                                       "Myrmica monticola", "Pheidole ceres", 
+                                       "Pheidole ceres", 
                                        "Stenamma diecki", "Tapinoma sessile", 
                                        "Temnothorax rugatulus"), ]
 
