@@ -1,5 +1,5 @@
 # Anna Paraskevopoulos
-# Gregory Canyon Analyses
+# Gregory Canyon Analyses - community composition
 
 # load the required packages
 library(reshape2)
@@ -484,6 +484,7 @@ ss.ant
 set.seed(2) # setting the starting point of a random number generator
 nmds2 <- metaMDS(ss.ant, k=2, trymax=500)
 stressplot(nmds2)
+summary(nmds2)
 plot(nmds2)
 
 ordiplot(nmds2,type="n")
@@ -491,12 +492,12 @@ orditorp(nmds2,display="species",col="red",air=0.01)
 orditorp(nmds2,display="sites",cex=1.25,air=0.01)
 
 vec <- c("Contemporary", "Historical")
-treat=rep(vec, 10)
+treat=rep(vec, 13)
 ordiplot(nmds2,type="n")
 ordihull(nmds2,groups=treat,draw="polygon",col="grey90",label=F)
 orditorp(nmds2,display="species",col="red",air=0.01)
 
-colors=rep(c("darkcyan","goldenrod"), 10)
+colors=rep(c("darkcyan","goldenrod"), 13)
 ordiplot(nmds2,type="n")
 # Plot convex hulls with colors baesd on treatment
 for(i in unique(treat)) {
@@ -617,12 +618,12 @@ orditorp(nmds3,display="species",col="red",air=0.01)
 orditorp(nmds3,display="sites",cex=1.25,air=0.01)
 
 vec <- c("Contemporary", "Historical")
-treat=rep(vec, 12)
+treat=rep(vec, 14)
 ordiplot(nmds3,type="n")
 ordihull(nmds3,groups=treat,draw="polygon",col="grey90",label=F)
 orditorp(nmds3,display="species",col="red",air=0.01)
 
-colors=rep(c("darkcyan","goldenrod"), 27)
+colors=rep(c("darkcyan","goldenrod"), 14)
 ordiplot(nmds3,type="n")
 # Plot convex hulls with colors baesd on treatment
 for(i in unique(treat)) {
@@ -747,12 +748,12 @@ orditorp(nmds4,display="species",col="red",air=0.01)
 orditorp(nmds4,display="sites",cex=1.25,air=0.01)
 
 vec <- c("Contemporary", "Historical")
-treat=rep(vec, 5)
+treat=rep(vec, 6)
 ordiplot(nmds4,type="n")
 ordihull(nmds4,groups=treat,draw="polygon",col="grey90",label=F)
 orditorp(nmds4,display="species",col="red",air=0.01)
 
-colors=rep(c("darkcyan","goldenrod"), 5)
+colors=rep(c("darkcyan","goldenrod"), 6)
 ordiplot(nmds4,type="n")
 # Plot convex hulls with colors baesd on treatment
 for(i in unique(treat)) {
@@ -1030,7 +1031,7 @@ ggplot(data=sant, aes(x=reorder(Current.Species, as.numeric(n.obs)), y=as.numeri
   geom_bar(stat="identity") +
   scale_fill_manual(values=c("darkcyan", "goldenrod"), name="Timeframe") +
   theme(axis.title = element_text(size = 14)) +
-  scale_y_continuous(limits = c(0,26), breaks=c(0, 10, 20)) +
+  scale_y_continuous(limits = c(0,33), breaks=c(0, 10, 20)) +
   labs(x = "Ant Species",
        y = "Site occurrence") + coord_flip()
 
@@ -1041,7 +1042,7 @@ ggplot(data=sant, aes(x=reorder(Current.Species, as.numeric(n.obs)), y=as.numeri
 
 # ANALYZE DIFFERENCES IN ANT SPECIES COMPOSITION 
 # presence absence data for ants
-ants <- ant %>% group_by(Sampling.Site, Current.or.Historical, 
+ants <- ant %>% group_by(Sampling.Site, Timeframe, 
                          Current.Species) %>%
   summarise(n.obs=n())
 ants
@@ -1049,7 +1050,7 @@ slope <- spread(key = Current.Species, value = n.obs, fill = 0, data=ants)
 
 # odds are current data
 # evens are historic data
-slope$Current.or.Historical <- NULL
+slope$Timeframe <- NULL
 slope$Sampling.Site <- NULL
 slope
 
@@ -1061,7 +1062,7 @@ slope
 beta <- vegdist(slope, method = "bray", binary = FALSE)
 hist(beta)
 summary(beta)
-disp <- betadisper(beta, group = antz$Current.or.Historical)
+disp <- betadisper(beta, group = ants$Timeframe)
 permutest(disp)
 plot(disp, main = "Ant composition")
 
